@@ -1,20 +1,29 @@
 import { Route, Switch } from 'react-router-dom';
+import React, { Component } from 'react';
 
 import Palette from './Palette';
 import seedColors from './seedColors';
 
 import generatePalette from './colorHelpers';
 
-function App() {
-	return (
-		<div className='App'>
+export default class App extends Component {
+	findPalette(id) {
+		console.log(id);
+		return seedColors.find((palette) => palette.id === id);
+	}
+	render() {
+		return (
 			<Switch>
-				<Route extact path='/' />
-				<Route extact path='/palette/:id' />
-			</Switch>
-			<Palette palette={generatePalette(seedColors[2])} />
-		</div>
-	);
-}
+				<Route exact path='/' render={() => <p>vishnu</p>} />
 
-export default App;
+				<Route
+					exact
+					path='/palette/:id'
+					render={(routesProps) => (
+						<Palette palette={generatePalette(this.findPalette(routesProps.match.params.id))} />
+					)}
+				/>
+			</Switch>
+		);
+	}
+}
