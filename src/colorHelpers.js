@@ -29,7 +29,7 @@ const generatePalette = (staterPalette) => {
 		}
 	}
 
-	return generatePalette;
+	return newPalette;
 };
 
 const getRange = (hexColor) => {
