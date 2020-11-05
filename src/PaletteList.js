@@ -1,6 +1,7 @@
 import { Palette } from '@material-ui/icons';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import MiniPalette from './MiniPalette';
 
 export default class PaletteList extends Component {
 	render() {
@@ -8,9 +9,7 @@ export default class PaletteList extends Component {
 		return (
 			<div>
 				{palettes.map((palette) => (
-					<p>
-						<Link to={`/palette/${palette.id}`}>{palette.paletteName}</Link>
-					</p>
+					<MiniPalette {...palette} />
 				))}
 			</div>
 		);
