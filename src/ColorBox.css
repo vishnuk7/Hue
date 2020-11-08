@@ -43,7 +43,6 @@
 	justify-content: center;
 	flex-direction: column;
 	font-size: 3rem;
-	color: #ffffff;
 	transform: scale(0.1);
 	opacity: 0;
 }
@@ -97,7 +96,6 @@
 	background: rgba(225, 255, 255, 0.3);
 	font-size: 1rem;
 	line-height: 30px;
-	color: #ffffff;
 	text-transform: uppercases;
 	border: none;
 	text-decoration: none;
@@ -106,6 +104,10 @@
 
 .copy-btn {
 	opacity: 0;
+}
+
+.back-btn {
+	color: #ffffff;
 }
 
 .ColorBox:hover .copy-btn {
