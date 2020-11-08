@@ -124,3 +124,11 @@
 	line-height: 30px;
 	text-transform: uppercase;
 }
+
+.text-light {
+	color: #ffffff;
+}
+
+.text-dark {
+	color: rgba(0, 0, 0, 0.7);
+}
