@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import ColorBox from './ColorBox';
 import PaletteFooter from './PaletteFooter';
 import Navbar from './Navbar';
@@ -12,8 +14,6 @@ export default class SingleColorPalette extends Component {
 		this.state = {
 			format: 'hex',
 		};
-
-		console.dir(this._shades);
 	}
 
 	gatherShades(palette, colorId) {
@@ -23,7 +23,7 @@ export default class SingleColorPalette extends Component {
 		for (let key in allColors) {
 			shades = shades.concat(allColors[key].filter((color) => color.id === colorId));
 		}
-		return shades;
+		return shades.slice(1);
 	}
 
 	changeFormat(val) {
@@ -34,15 +34,22 @@ export default class SingleColorPalette extends Component {
 
 	render() {
 		const { format } = this.state;
-		const { palette, emoji } = this.props.palette;
+		const { palette, emoji, id } = this.props.palette;
 
 		const colorBoxes = this._shades.map((color) => (
-			<ColorBox key={color.id} name={color.name} background={color[format]} showLink={false} />
+			<ColorBox key={color.name} name={color.name} background={color[format]} showLink={false} />
 		));
 		return (
-			<div className='Palette'>
+			<div className='Palette SingleColorPalette'>
 				<Navbar changeFormat={this.changeFormat} showAllColors={false} />
-				<div className='Palette-colors'>{colorBoxes}</div>
+				<div className='Palette-colors'>
+					{colorBoxes}
+					<div className='go-back ColorBox'>
+						<Link to={`/palette/${id}`} className='back-btn'>
+							Go Back
+						</Link>
+					</div>
+				</div>
 				<PaletteFooter name={palette} emoji={emoji} />
 			</div>
 		);

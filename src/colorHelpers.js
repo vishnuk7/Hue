@@ -13,8 +13,6 @@ const generatePalette = (staterPalette) => {
 		newPalette.colors[level] = [];
 	}
 
-	console.log(newPalette);
-
 	for (let color of staterPalette.colors) {
 		let scale = getScale(color.color, 10).reverse();
 
