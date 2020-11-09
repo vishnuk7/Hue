@@ -1,6 +1,5 @@
-import { Palette } from '@material-ui/icons';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+
 import MiniPalette from './MiniPalette';
 import { withStyles } from '@material-ui/styles';
 
