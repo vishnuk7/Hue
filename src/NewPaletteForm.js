@@ -10,8 +10,10 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import Button from '@material-ui/core/Button';
+import { ChromePicker } from 'react-color';
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const styles = (theme) => ({
 	root: {
@@ -76,9 +78,13 @@ class NewPaletteForm extends Component {
 
 		this.handleDrawerClose = this.handleDrawerClose.bind(this);
 		this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
+		this.updateCurrentColor = this.updateCurrentColor.bind(this);
+		this.addNewColor = this.addNewColor.bind(this);
 
 		this.state = {
 			open: false,
+			currentColor: 'teal',
+			colors: ['#256789', '#f56789', '#1ab578'],
 		};
 	}
 
@@ -90,9 +96,19 @@ class NewPaletteForm extends Component {
 		this.setState({ open: false });
 	}
 
+	updateCurrentColor(currentColor) {
+		this.setState({ currentColor: currentColor.hex });
+	}
+
+	addNewColor() {
+		this.setState({
+			colors: [...this.state.colors, this.state.currentColor],
+		});
+	}
+
 	render() {
 		const { classes } = this.props;
-		const { open } = this.state;
+		const { open, currentColor } = this.state;
 
 		return (
 			<div className={classes.root}>
@@ -129,6 +145,22 @@ class NewPaletteForm extends Component {
 						</IconButton>
 					</div>
 					<Divider />
+					<Typography variant='h4'>Design your palette</Typography>
+					<div>
+						<Button variant='contained' color='secondary'>
+							Clear Palette
+						</Button>
+						<Button variant='contained' color='primary'>
+							Random Color
+						</Button>
+					</div>
+					<ChromePicker
+						color={currentColor}
+						onChangeComplete={(newColor) => this.updateCurrentColor(newColor)}
+					/>
+					<Button variant='contained' style={{ background: currentColor }} onClick={this.addNewColor}>
+						Add Color
+					</Button>
 				</Drawer>
 				<main
 					className={classNames(classes.content, {
