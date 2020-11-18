@@ -1,6 +1,7 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { withStyles } from '@material-ui/styles';
+import { SortableElement } from 'react-sortable-hoc';
 
 const styles = {
 	root: {
@@ -36,7 +37,7 @@ const styles = {
 	},
 };
 
-function DargableColorBox(props) {
+const DargableColorBox = SortableElement((props) => {
 	const { name, color, classes, handleClick } = props;
 
 	return (
@@ -47,6 +48,6 @@ function DargableColorBox(props) {
 			</div>
 		</div>
 	);
-}
+});
 
 export default withStyles(styles)(DargableColorBox);
