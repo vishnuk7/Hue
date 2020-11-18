@@ -18,6 +18,12 @@ export default class PaletteFormNav extends Component {
 		};
 	}
 
+	componentDidMount() {
+		ValidatorForm.addValidationRule('isPaletteNameUnique', (value) =>
+			this.props.palettes.every(({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase())
+		);
+	}
+
 	handleChange(evt) {
 		this.setState({
 			[evt.target.name]: evt.target.value,
@@ -25,7 +31,7 @@ export default class PaletteFormNav extends Component {
 	}
 
 	render() {
-		const { classes, open, handleDrawerOpen, savePalette } = this.props;
+		const { classes, open, handleDrawerOpen, savePalette, palettes } = this.props;
 		const { newPaletteName } = this.state;
 		return (
 			<div>
