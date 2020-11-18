@@ -242,7 +242,7 @@ class NewPaletteForm extends Component {
 					})}>
 					<div className={classes.drawerHeader} />
 					{colors.map((data) => (
-						<DargableColorBox color={data.color} />
+						<DargableColorBox color={data.color} name={data.name} />
 					))}
 				</main>
 			</div>
