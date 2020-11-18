@@ -15,6 +15,7 @@ import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 import DargableColorBox from './DargableColorBox';
+import { colors } from '@material-ui/core';
 
 const drawerWidth = 400;
 
@@ -89,6 +90,7 @@ class NewPaletteForm extends Component {
 		this.addNewColor = this.addNewColor.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.savePalette = this.savePalette.bind(this);
+		this.removeColor = this.removeColor.bind(this);
 
 		this.state = {
 			open: false,
@@ -150,6 +152,12 @@ class NewPaletteForm extends Component {
 		};
 		this.props.savePalette(newPalette);
 		this.props.history.push('/');
+	}
+
+	removeColor(colorName) {
+		this.setState({
+			colors: this.state.colors.filter(({ name }) => name !== colorName),
+		});
 	}
 
 	render() {
@@ -242,7 +250,12 @@ class NewPaletteForm extends Component {
 					})}>
 					<div className={classes.drawerHeader} />
 					{colors.map((data) => (
-						<DargableColorBox color={data.color} name={data.name} />
+						<DargableColorBox
+							key={data.name}
+							color={data.color}
+							name={data.name}
+							handleClick={() => this.removeColor(data.name)}
+						/>
 					))}
 				</main>
 			</div>
