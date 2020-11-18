@@ -164,7 +164,6 @@ class NewPaletteForm extends Component {
 			<div className={classes.root}>
 				<PaletteFormNav
 					open={open}
-					classes={classes}
 					handleDrawerOpen={this.handleDrawerOpen}
 					savePalette={this.savePalette}
 					palettes={palettes}
