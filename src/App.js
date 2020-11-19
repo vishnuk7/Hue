@@ -15,8 +15,10 @@ export default class App extends Component {
 		this.findPalette = this.findPalette.bind(this);
 		this.savePalette = this.savePalette.bind(this);
 
+		const savedPalette = JSON.parse(window.localStorage.getItem('palettes'));
+
 		this.state = {
-			palettes: seedColors,
+			palettes: savedPalette || seedColors,
 		};
 	}
 
@@ -25,9 +27,16 @@ export default class App extends Component {
 	}
 
 	savePalette(newPalette) {
-		this.setState({
-			palettes: [...this.state.palettes, newPalette],
-		});
+		this.setState(
+			{
+				palettes: [...this.state.palettes, newPalette],
+			},
+			this.syncLocalStorage
+		);
+	}
+
+	syncLocalStorage() {
+		window.localStorage.setItem('palettes', JSON.stringify(this.state.palettes));
 	}
 
 	render() {
