@@ -17,6 +17,9 @@ const drawerWidth = 400;
 const styles = (theme) => ({
 	root: {
 		display: 'flex',
+		'& h4': {
+			marginBottom: '8px',
+		},
 	},
 	appBar: {
 		transition: theme.transitions.create(['margin', 'width'], {
@@ -45,6 +48,7 @@ const styles = (theme) => ({
 	},
 	drawerPaper: {
 		width: drawerWidth,
+		display: 'flex',
 	},
 	drawerHeader: {
 		display: 'flex',
@@ -69,6 +73,22 @@ const styles = (theme) => ({
 			duration: theme.transitions.duration.enteringScreen,
 		}),
 		marginLeft: 0,
+	},
+	container: {
+		width: '100%',
+		height: '100%',
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	buttons: {
+		width: '100%',
+		display: 'flex',
+		justifyContent: 'space-around',
+	},
+	button: {
+		width: '45%',
 	},
 });
 
@@ -182,20 +202,28 @@ class NewPaletteForm extends Component {
 						</IconButton>
 					</div>
 					<Divider />
-					<Typography variant='h4'>Design your palette</Typography>
-					<div>
-						<Button variant='contained' color='secondary' onClick={this.clearPalette}>
-							Clear Palette
-						</Button>
-						<Button
-							variant='contained'
-							color='primary'
-							onClick={this.addRandomColor}
-							disabled={isPaletteFull}>
-							Random Color
-						</Button>
+					<div className={classes.container}>
+						<Typography variant='h4'>Design your palette</Typography>
+						<div className={classes.buttons}>
+							<Button
+								className={classes.button}
+								variant='contained'
+								color='secondary'
+								onClick={this.clearPalette}>
+								Clear Palette
+							</Button>
+							<Button
+								className={classes.button}
+								variant='contained'
+								color='primary'
+								onClick={this.addRandomColor}
+								disabled={isPaletteFull}>
+								Random Color
+							</Button>
+						</div>
+						<ColorPickerForm isPaletteFull={isPaletteFull} colors={colors} addNewColor={this.addNewColor} />
 					</div>
-					<ColorPickerForm isPaletteFull={isPaletteFull} colors={colors} addNewColor={this.addNewColor} />
+					S
 				</Drawer>
 				<main
 					className={classNames(classes.content, {
