@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import MetaPaletteForm from './MetaPaletteForm';
@@ -51,6 +50,8 @@ class PaletteFormNav extends Component {
 	constructor(props) {
 		super(props);
 		this.showForm = this.showForm.bind(this);
+		this.hideForm = this.hideForm.bind(this);
+
 		this.state = {
 			showingForm: false,
 		};
@@ -59,6 +60,12 @@ class PaletteFormNav extends Component {
 	showForm() {
 		this.setState({
 			showingForm: true,
+		});
+	}
+
+	hideForm() {
+		this.setState({
+			showingForm: false,
 		});
 	}
 
@@ -96,7 +103,9 @@ class PaletteFormNav extends Component {
 						</Button>
 					</div>
 				</AppBar>
-				{showingForm && <MetaPaletteForm savePalette={savePalette} palettes={palettes} />}
+				{showingForm && (
+					<MetaPaletteForm savePalette={savePalette} palettes={palettes} hideForm={this.hideForm} />
+				)}
 			</div>
 		);
 	}
