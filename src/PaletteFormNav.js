@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -54,7 +54,7 @@ class PaletteFormNav extends Component {
 							aria-label='Open drawer'
 							onClick={handleDrawerOpen}
 							className={classNames(classes.menuButton, open && classes.hide)}>
-							<MenuIcon />
+							<LibraryAddIcon />
 						</IconButton>
 						<Typography variant='h6' color='inherit' noWrap>
 							Create Palette
