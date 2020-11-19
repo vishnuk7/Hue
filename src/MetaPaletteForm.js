@@ -54,7 +54,8 @@ export default class MetaPaletteForm extends Component {
 
 		return (
 			<div>
-				<Dialog open={stage === 'emoji'}>
+				<Dialog open={stage === 'emoji'} onClose={hideForm}>
+					<DialogTitle id='form-dialog-title'>Choose an emoji</DialogTitle>
 					<Picker onSelect={this.savePalette} />
 				</Dialog>
 				<Dialog open={stage === 'form'} aria-labelledby='form-dialog-title' onClose={hideForm}>
