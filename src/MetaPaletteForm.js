@@ -15,7 +15,7 @@ export default class MetaPaletteForm extends Component {
 		this.handleChange = this.handleChange.bind(this);
 
 		this.state = {
-			open: false,
+			open: true,
 			newPaletteName: '',
 		};
 	}
@@ -54,34 +54,34 @@ export default class MetaPaletteForm extends Component {
 					Open form dialog
 				</Button>
 				<Dialog open={open} onClose={this.handleClose} aria-labelledby='form-dialog-title'>
-					<DialogTitle id='form-dialog-title'>Subscribe</DialogTitle>
-					<DialogContent>
-						<DialogContentText>
-							To subscribe to this website, please enter your email address here. We will send updates
-							occasionally.
-						</DialogContentText>
-						<ValidatorForm onSubmit={() => savePalette(newPaletteName)}>
+					<DialogTitle id='form-dialog-title'>Choose a Palette Name</DialogTitle>
+					<ValidatorForm onSubmit={() => savePalette(newPaletteName)}>
+						<DialogContent>
+							<DialogContentText>
+								Please Enter a name for your new beautiful palette.Make sure it's unique!
+							</DialogContentText>
+
 							<TextValidator
 								label='Palette Name'
 								name='newPaletteName'
 								value={newPaletteName}
 								onChange={this.handleChange}
+								fullWidth
+								margin='normal'
 								validators={['required', 'isPaletteNameUnique']}
 								errorMessages={['palette name is required', 'this palette name is already used']}
 							/>
+						</DialogContent>
+
+						<DialogActions>
+							<Button onClick={this.handleClose} color='primary'>
+								Cancel
+							</Button>
 							<Button variant='contained' color='primary' type='submit'>
 								Save Palette
 							</Button>
-						</ValidatorForm>
-					</DialogContent>
-					<DialogActions>
-						<Button onClick={this.handleClose} color='primary'>
-							Cancel
-						</Button>
-						<Button onClick={this.handleClose} color='primary'>
-							Subscribe
-						</Button>
-					</DialogActions>
+						</DialogActions>
+					</ValidatorForm>
 				</Dialog>
 			</div>
 		);

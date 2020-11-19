@@ -36,11 +36,35 @@ const styles = (theme) => ({
 			duration: theme.transitions.duration.enteringScreen,
 		}),
 	},
+	navBtns: {
+		'& a': {
+			textDecoration: 'none',
+			color: '#ffffff',
+		},
+	},
+	button: {
+		margin: '0 0.5rem',
+	},
 });
 
 class PaletteFormNav extends Component {
+	constructor(props) {
+		super(props);
+		this.showForm = this.showForm.bind(this);
+		this.state = {
+			showingForm: false,
+		};
+	}
+
+	showForm() {
+		this.setState({
+			showingForm: true,
+		});
+	}
+
 	render() {
 		const { classes, open, handleDrawerOpen, savePalette, palettes } = this.props;
+		const { showingForm } = this.state;
 
 		return (
 			<div classes={classes.root}>
@@ -64,13 +88,15 @@ class PaletteFormNav extends Component {
 						</Typography>
 					</Toolbar>
 					<div className={classes.navBtns}>
-						<MetaPaletteForm savePalette={savePalette} palettes={palettes} />
-
-						<Button variant='contained' color='secondary'>
+						<Button variant='contained' color='primary' onClick={this.showForm} className={classes.button}>
+							Save
+						</Button>
+						<Button variant='contained' color='secondary' className={classes.button}>
 							<Link to='/'>Go Back</Link>
 						</Button>
 					</div>
 				</AppBar>
+				{showingForm && <MetaPaletteForm savePalette={savePalette} palettes={palettes} />}
 			</div>
 		);
 	}
