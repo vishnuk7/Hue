@@ -1,3 +1,5 @@
+import { sizes } from './sizes';
+
 const styles = {
 	Navbar: {
 		display: 'flex',
@@ -18,6 +20,9 @@ const styles = {
 			textTransform: 'uppercase',
 			color: '#000000',
 			textDecoration: 'none',
+		},
+		[sizes.down('xs')]: {
+			display: 'none',
 		},
 	},
 
@@ -45,6 +50,9 @@ const styles = {
 			height: '13px',
 			marginLeft: '-7px',
 			marginTop: '-3px',
+		},
+		[sizes.down('md')]: {
+			width: '150px',
 		},
 	},
 };
