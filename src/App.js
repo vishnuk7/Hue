@@ -14,6 +14,7 @@ export default class App extends Component {
 		super(props);
 		this.findPalette = this.findPalette.bind(this);
 		this.savePalette = this.savePalette.bind(this);
+		this.removePalette = this.removePalette.bind(this);
 
 		const savedPalette = JSON.parse(window.localStorage.getItem('palettes'));
 
@@ -35,6 +36,15 @@ export default class App extends Component {
 		);
 	}
 
+	removePalette(id) {
+		this.setState(
+			(st) => ({
+				palettes: st.palettes.filter((palette) => palette.id !== id),
+			}),
+			this.syncLocalStorage
+		);
+	}
+
 	syncLocalStorage() {
 		window.localStorage.setItem('palettes', JSON.stringify(this.state.palettes));
 	}
@@ -45,7 +55,13 @@ export default class App extends Component {
 				<Route
 					exact
 					path='/'
-					render={(routesProps) => <PaletteList {...routesProps} palettes={this.state.palettes} />}
+					render={(routesProps) => (
+						<PaletteList
+							{...routesProps}
+							palettes={this.state.palettes}
+							removePalette={this.removePalette}
+						/>
+					)}
 				/>
 				<Route
 					exact

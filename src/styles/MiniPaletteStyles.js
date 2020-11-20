@@ -1,3 +1,5 @@
+import { blue, red } from '@material-ui/core/colors';
+
 const styles = {
 	root: {
 		backgroundColor: '#ffffff',
@@ -52,6 +54,26 @@ const styles = {
 		padding: '10px',
 		zIndex: 10,
 		opacity: 0,
+	},
+	item1: {
+		backgroundColor: blue[100],
+		color: blue[700],
+	},
+	item2: {
+		backgroundColor: red[100],
+		color: red[700],
+	},
+	avatar1: {
+		backgroundColor: blue[200],
+	},
+	avatar2: {
+		backgroundColor: red[200],
+	},
+	icon1: {
+		color: blue[500],
+	},
+	icon2: {
+		color: red[500],
 	},
 };
 
