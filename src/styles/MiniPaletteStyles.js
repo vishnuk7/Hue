@@ -55,14 +55,6 @@ const styles = {
 		zIndex: 10,
 		opacity: 0,
 	},
-	item1: {
-		backgroundColor: blue[100],
-		color: blue[700],
-	},
-	item2: {
-		backgroundColor: red[100],
-		color: red[700],
-	},
 	avatar1: {
 		backgroundColor: blue[200],
 	},

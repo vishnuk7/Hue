@@ -42,6 +42,7 @@ class MiniPalette extends Component {
 	confirm(evt) {
 		evt.stopPropagation();
 		this.props.removePalette(this.props.id);
+		this.handleClose(evt);
 	}
 
 	render() {
@@ -55,9 +56,9 @@ class MiniPalette extends Component {
 		return (
 			<div className={classes.root} onClick={handleClick}>
 				<Dialog onClose={this.handleClose} aria-labelledby='simple-dialog-title' open={open}>
-					<DialogTitle id='simple-dialog-title'>Are You Sure</DialogTitle>
+					<DialogTitle id='simple-dialog-title'>Are You Sure?</DialogTitle>
 					<List>
-						<ListItem button className={classes.item1} onClick={this.confirm}>
+						<ListItem button onClick={this.confirm}>
 							<ListItemIcon>
 								<Avatar className={classes.avatar1}>
 									<DoneIcon className={classes.icon1} />
@@ -65,7 +66,7 @@ class MiniPalette extends Component {
 							</ListItemIcon>
 							<ListItemText primary='Delete' />
 						</ListItem>
-						<ListItem button className={classes.item2} onClick={this.handleClose}>
+						<ListItem button onClick={this.handleClose}>
 							<ListItemIcon>
 								<Avatar className={classes.avatar2}>
 									<ClearIcon className={classes.icon2} />
