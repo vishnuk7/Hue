@@ -4,12 +4,12 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import Palette from './Palette';
 import PaletteList from './PaletteList';
-import seedColors from './seedColors';
+import { seedColors } from './seedColors';
+import NewPaletteForm from './NewPaletteForm';
+import Page from './Page';
 
 import generatePalette from './colorHelpers';
 import SingleColorPalette from './SingleColorPalette';
-import NewPaletteForm from './NewPaletteForm';
-import Page from './Page';
 
 export default class App extends Component {
 	constructor(props) {
@@ -56,7 +56,7 @@ export default class App extends Component {
 			<Route
 				render={({ location }) => (
 					<TransitionGroup>
-						<CSSTransition key={location.key} classNames='page'>
+						<CSSTransition key={location.key} classNames='page' timeout={50}>
 							<Switch location={location}>
 								<Route
 									exact
