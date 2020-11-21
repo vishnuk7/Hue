@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { withStyles } from '@material-ui/styles';
 import List from '@material-ui/core/List';
@@ -9,17 +9,17 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import DoneIcon from '@material-ui/icons/Done';
 import ClearIcon from '@material-ui/icons/Clear';
-import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 
 import styles from './styles/MiniPaletteStyles';
 
-class MiniPalette extends Component {
+class MiniPalette extends PureComponent {
 	constructor(props) {
 		super(props);
 		this.removePalette = this.removePalette.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 		this.confirm = this.confirm.bind(this);
+		this.handleClick = this.handleClick.bind(this);
 
 		this.state = {
 			open: false,
@@ -45,8 +45,13 @@ class MiniPalette extends Component {
 		this.handleClose(evt);
 	}
 
+	handleClick() {
+		this.props.handleClick(this.props.id);
+	}
+
 	render() {
-		const { classes, paletteName, emoji, colors, handleClick } = this.props;
+		const { classes, paletteName, emoji, colors } = this.props;
+		console.log('rendering ' + paletteName);
 		const { open } = this.state;
 
 		const miniColorBoxes = colors.map((color) => (
@@ -54,7 +59,7 @@ class MiniPalette extends Component {
 		));
 
 		return (
-			<div className={classes.root} onClick={handleClick}>
+			<div className={classes.root} onClick={this.handleClick}>
 				<Dialog onClose={this.handleClose} aria-labelledby='simple-dialog-title' open={open}>
 					<DialogTitle id='simple-dialog-title'>Are You Sure?</DialogTitle>
 					<List>

@@ -8,6 +8,10 @@ import styles from './styles/PaletteListStyles';
 import { Link } from 'react-router-dom';
 
 class PaletteList extends Component {
+	constructor(props) {
+		super(props);
+		this.goToPalette = this.goToPalette.bind(this);
+	}
 	goToPalette(id) {
 		this.props.history.push(`palette/${id}`);
 	}
@@ -30,7 +34,7 @@ class PaletteList extends Component {
 									{...palette}
 									id={palette.id}
 									removePalette={removePalette}
-									handleClick={() => this.goToPalette(palette.id)}
+									handleClick={this.goToPalette}
 								/>
 							</CSSTransition>
 						))}
